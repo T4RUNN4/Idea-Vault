@@ -1,4 +1,17 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 md:px-10 lg:px-20">
       <div className="w-full max-w-md">
@@ -13,7 +26,10 @@ export default function Login() {
             </p>
           </div>
 
-          <form className="mt-6 flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-6 flex flex-col gap-4"
+          >
             <div className="flex flex-col gap-1">
               <label className="label font-medium">Email</label>
 
@@ -21,7 +37,11 @@ export default function Login() {
                 type="email"
                 className="input w-full"
                 placeholder="john@example.com"
+                {...register("email", { required: true })}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">Email is required</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1">
@@ -40,7 +60,12 @@ export default function Login() {
                 type="password"
                 className="input w-full"
                 placeholder="Enter your password"
+                {...register("password", { required: true })}
               />
+
+              {errors.password && (
+                <p className="text-red-500 text-sm">Password is required</p>
+              )}
             </div>
 
             <button
