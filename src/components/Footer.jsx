@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="footer sm:footer-horizontal bg-lime-300 text-base-content p-10">
       <aside>
         <a href="/" className="text-3xl font-bold text-black">
-          IdeaVault
+          Idea Vault
         </a>
         <p>A vault for your ideas, filled with startup ideas</p>
 
@@ -68,8 +68,8 @@ export default function Footer() {
         </nav>
 
         <p className="mt-4 text-sm footer-title">
-          Copyright © {new Date().getFullYear()} - All right reserved by
-          Idea Vault
+          Copyright © {new Date().getFullYear()} - All right reserved by Idea
+          Vault
         </p>
       </aside>
       <div>

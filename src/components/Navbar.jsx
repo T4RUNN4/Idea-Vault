@@ -1,4 +1,12 @@
-import { House, Lightbulb, Plus, User, MessageCircle, LogIn, UserPlus } from "lucide-react";
+import {
+  House,
+  Lightbulb,
+  Plus,
+  User,
+  MessageCircle,
+  LogIn,
+  UserPlus,
+} from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -53,8 +61,8 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost text-3xl font-bold text-lime-500">
-          IdeaVault
+        <a href="/" className="btn btn-ghost text-3xl font-bold text-black">
+          <span className="text-lime-500">Idea</span> Vault
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
