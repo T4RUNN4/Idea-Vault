@@ -1,4 +1,28 @@
+"use client";
+import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
+
 export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const { fullName, email, photoUrl, password } = data;
+
+    const { data: res, error } = await authClient.signUp.email({
+      name: fullName,
+      email: email,
+      password: password,
+      image: photoUrl,
+      callbackURL: "/",
+    });
+
+    console.log(res, error);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 md:px-10 lg:px-20">
       <div className="w-full max-w-4xl">
@@ -13,7 +37,10 @@ export default function Register() {
             </p>
           </div>
 
-          <form className="mt-6 flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-6 flex flex-col gap-4"
+          >
             <div className="flex flex-col gap-1">
               <label className="label font-medium">Full Name</label>
 
@@ -21,7 +48,11 @@ export default function Register() {
                 type="text"
                 className="input w-full"
                 placeholder="John Doe"
+                {...register("fullName", { required: true })}
               />
+              {errors.fullName && (
+                <p className="text-red-500 text-sm">Full Name is required</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1">
@@ -31,7 +62,11 @@ export default function Register() {
                 type="email"
                 className="input w-full"
                 placeholder="john@example.com"
+                {...register("email", { required: true })}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">Email is required</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1">
@@ -41,7 +76,11 @@ export default function Register() {
                 type="text"
                 className="input w-full"
                 placeholder="https://example.com/photo.jpg"
+                {...register("photoUrl", { required: true })}
               />
+              {errors.photoUrl && (
+                <p className="text-red-500 text-sm">Photo URL is required</p>
+              )}
             </div>
 
             <div className="flex flex-col gap-1">
@@ -51,7 +90,11 @@ export default function Register() {
                 type="password"
                 className="input w-full"
                 placeholder="Create a strong password"
+                {...register("password", { required: true })}
               />
+              {errors.password && (
+                <p className="text-red-500 text-sm">Password is required</p>
+              )}
             </div>
 
             <button
