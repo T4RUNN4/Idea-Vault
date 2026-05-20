@@ -8,7 +8,6 @@ export default function AddIdeas() {
   return (
     <div className="min-h-screen bg-base-100 px-4 py-12 md:px-8 lg:px-20">
       <div className="mx-auto w-full max-w-5xl">
-        {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-base-content leading-tight">
             Have a <span className="text-lime-500">Startup Idea?</span>
@@ -20,12 +19,10 @@ export default function AddIdeas() {
           </p>
         </div>
 
-        {/* Form Card */}
         <form
           onSubmit={handleSubmit}
           className="bg-base-200 border border-base-300 rounded-3xl shadow-sm p-6 md:p-10"
         >
-          {/* Top Section */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-base-300">
             <div>
               <h2 className="text-2xl font-bold text-lime-500">
@@ -37,23 +34,9 @@ export default function AddIdeas() {
                 <span className="text-red-500 font-bold">*</span> are required
               </p>
             </div>
-
-            <div className="w-full md:w-52">
-              <div className="flex justify-between text-xs text-base-content/60 mb-1">
-                <span>Completion</span>
-                <span>0%</span>
-              </div>
-
-              <progress
-                className="progress progress-success w-full"
-                value="0"
-                max="100"
-              ></progress>
-            </div>
           </div>
 
           <div className="space-y-10 mt-8">
-            {/* BASIC INFO */}
             <section className="space-y-5">
               <div>
                 <h3 className="text-lg font-semibold text-base-content">
@@ -70,8 +53,6 @@ export default function AddIdeas() {
                   <label className="font-medium text-sm">
                     Idea Title <span className="text-red-500">*</span>
                   </label>
-
-                  <span className="text-xs text-base-content/50">0/100</span>
                 </div>
 
                 <input
@@ -86,8 +67,6 @@ export default function AddIdeas() {
                   <label className="font-medium text-sm">
                     Short Description <span className="text-red-500">*</span>
                   </label>
-
-                  <span className="text-xs text-base-content/50">0/200</span>
                 </div>
 
                 <textarea
@@ -108,7 +87,6 @@ export default function AddIdeas() {
               </div>
             </section>
 
-            {/* CATEGORY */}
             <section className="space-y-5">
               <div>
                 <h3 className="text-lg font-semibold text-base-content">
@@ -155,7 +133,6 @@ export default function AddIdeas() {
               </div>
             </section>
 
-            {/* MEDIA */}
             <section className="space-y-5">
               <div>
                 <h3 className="text-lg font-semibold text-base-content">
@@ -177,19 +154,9 @@ export default function AddIdeas() {
                   className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="https://example.com/startup-image.png"
                 />
-
-                {/* Image Preview */}
-                <div className="mt-3 border border-dashed border-base-300 rounded-2xl p-3">
-                  <img
-                    src="https://placehold.co/1200x600"
-                    alt="Preview"
-                    className="w-full h-56 object-cover rounded-xl"
-                  />
-                </div>
               </div>
             </section>
 
-            {/* BUSINESS DETAILS */}
             <section className="space-y-5">
               <div>
                 <h3 className="text-lg font-semibold text-base-content">
@@ -228,7 +195,6 @@ export default function AddIdeas() {
               </div>
             </section>
 
-            {/* PROBLEM & SOLUTION */}
             <section className="space-y-5">
               <div>
                 <h3 className="text-lg font-semibold text-base-content">
@@ -264,12 +230,7 @@ export default function AddIdeas() {
             </section>
           </div>
 
-          {/* Submit Button */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 pt-6 border-t border-base-300">
-            <p className="text-sm text-base-content/60">
-              Your idea will be reviewed before publishing.
-            </p>
-
             <button
               type="submit"
               className="btn bg-lime-500 hover:bg-lime-600 border-none text-white px-8 w-full sm:w-fit"
