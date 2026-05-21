@@ -40,7 +40,7 @@ export default function RegisterClient() {
       <div className="w-full max-w-4xl">
         <div className="bg-base-200 border border-base-300 rounded-box px-8 py-6 shadow-sm">
           <div className="flex flex-col items-center">
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className="text-3xl font-bold text-base-content">
               Create an <span className="text-lime-500">Account</span>
             </h1>
 

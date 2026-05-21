@@ -13,9 +13,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="footer sm:footer-horizontal bg-lime-300 text-base-content p-10">
+    <footer className="footer sm:footer-horizontal bg-lime-300 text-black p-10">
       <aside>
-        <Link href="/" className="text-3xl font-bold text-black">
+        <Link href="/" className="text-3xl font-bold">
           Idea Vault
         </Link>
         <p>A vault for your ideas, filled with startup ideas</p>

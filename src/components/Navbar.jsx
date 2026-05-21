@@ -14,7 +14,8 @@ import Loading from "./Loading";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     toast.success("Logged out successfully!");
     await authClient.signOut();
-  }
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-20 py-4">
@@ -52,66 +53,113 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link className={pathname === '/' ? 'bg-lime-500 text-white' : ''} href="/">
+              <Link
+                className={pathname === "/" ? "bg-lime-500 text-white" : ""}
+                href="/"
+              >
                 <House /> Home
               </Link>
             </li>
             <li>
-              <Link className={pathname === '/ideas' ? 'bg-lime-500 text-white' : ''} href="/ideas">
+              <Link
+                className={
+                  pathname === "/ideas" ? "bg-lime-500 text-white" : ""
+                }
+                href="/ideas"
+              >
                 <Lightbulb /> Ideas
               </Link>
             </li>
             <li>
-              <Link className={pathname === '/add-ideas' ? 'bg-lime-500 text-white' : ''} href="/add-ideas">
+              <Link
+                className={
+                  pathname === "/add-ideas" ? "bg-lime-500 text-white" : ""
+                }
+                href="/add-ideas"
+              >
                 <Plus /> Add Ideas
               </Link>
             </li>
             <li>
-              <Link className={pathname === '/my-ideas' ? 'bg-lime-500 text-white' : ''} href="/my-ideas">
+              <Link
+                className={
+                  pathname === "/my-ideas" ? "bg-lime-500 text-white" : ""
+                }
+                href="/my-ideas"
+              >
                 <User /> My Ideas
               </Link>
             </li>
             <li>
-              <Link className={pathname === '/my-interactions' ? 'bg-lime-500 text-white' : ''} href="/my-interactions">
+              <Link
+                className={
+                  pathname === "/my-interactions"
+                    ? "bg-lime-500 text-white"
+                    : ""
+                }
+                href="/my-interactions"
+              >
                 <MessageCircle /> My Interactions
               </Link>
             </li>
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost text-3xl font-bold text-black">
+        <Link href="/" className="btn btn-ghost text-3xl font-bold text-base-content">
           <span className="text-lime-500">Idea</span> Vault
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link className={pathname === '/' ? 'bg-lime-500 text-white' : ''} href="/">
+            <Link
+              className={pathname === "/" ? "bg-lime-500 text-white" : ""}
+              href="/"
+            >
               <House /> Home
             </Link>
           </li>
           <li>
-            <Link className={pathname === '/ideas' ? 'bg-lime-500 text-white' : ''} href="/ideas">
+            <Link
+              className={pathname === "/ideas" ? "bg-lime-500 text-white" : ""}
+              href="/ideas"
+            >
               <Lightbulb /> Ideas
             </Link>
           </li>
           <li>
-            <Link className={pathname === '/add-ideas' ? 'bg-lime-500 text-white' : ''} href="/add-ideas">
+            <Link
+              className={
+                pathname === "/add-ideas" ? "bg-lime-500 text-white" : ""
+              }
+              href="/add-ideas"
+            >
               <Plus /> Add Ideas
             </Link>
           </li>
           <li>
-            <Link className={pathname === '/my-ideas' ? 'bg-lime-500 text-white' : ''} href="/my-ideas">
+            <Link
+              className={
+                pathname === "/my-ideas" ? "bg-lime-500 text-white" : ""
+              }
+              href="/my-ideas"
+            >
               <User /> My Ideas
             </Link>
           </li>
           <li>
-            <Link className={pathname === '/my-interactions' ? 'bg-lime-500 text-white' : ''} href="/my-interactions">
+            <Link
+              className={
+                pathname === "/my-interactions" ? "bg-lime-500 text-white" : ""
+              }
+              href="/my-interactions"
+            >
               <MessageCircle /> My Interactions
             </Link>
           </li>
         </ul>
       </div>
       <div className="flex gap-2 navbar-end">
+        <ThemeToggle />
         {isPending ? (
           <Loading />
         ) : user ? (
