@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import IdeaCard from "@/components/IdeaCard";
+import Carousel from "@/components/Carousel";
 
 export const metadata = {
   title: "Home - Idea Vault",
@@ -8,12 +9,16 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/trending`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/trending`,
+  );
   const ideas = await res.json();
 
   return (
     <div className="min-h-screen bg-base-100">
-      {/* Add Carousel */}
+      <section className="max-w-6xl mx-auto px-4 md:px-8 lg:px-20 mt-16">
+        <Carousel />
+      </section>
 
       <section className="max-w-6xl mx-auto px-4 md:px-8 lg:px-20 mt-16">
         <h2 className="text-3xl font-bold text-base-content">Trending Ideas</h2>
