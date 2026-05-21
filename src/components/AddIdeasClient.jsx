@@ -1,8 +1,12 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 export default function AddIdeasClient() {
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+
   const {
     register,
     handleSubmit,
@@ -15,7 +19,7 @@ export default function AddIdeasClient() {
       ...data,
       estimatedBudget: Number(data.estimatedBudget) || 0,
       tags: data.tags.split(",").map((tag) => tag.trim()) || [],
-      user: "Anonymous",
+      user: user ? user.email : "Anonymous",
       createdAt: new Date().toISOString(),
       isTrending: false,
     };

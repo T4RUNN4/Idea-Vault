@@ -18,7 +18,6 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const pathname = usePathname();
-  console.log("Current pathname:", pathname);
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
 
