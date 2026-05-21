@@ -1,14 +1,5 @@
 "use client";
-import {
-  House,
-  Lightbulb,
-  Plus,
-  User,
-  MessageCircle,
-  LogIn,
-  LogOut,
-  UserPlus,
-} from "lucide-react";
+import { UserPlus, LogIn, LogOut } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import Loading from "./Loading";
 import Image from "next/image";
@@ -57,7 +48,7 @@ export default function Navbar() {
                 className={pathname === "/" ? "bg-lime-500 text-white" : ""}
                 href="/"
               >
-                <House /> Home
+                Home
               </Link>
             </li>
             <li>
@@ -67,7 +58,7 @@ export default function Navbar() {
                 }
                 href="/ideas"
               >
-                <Lightbulb /> Ideas
+                Ideas
               </Link>
             </li>
             <li>
@@ -77,7 +68,7 @@ export default function Navbar() {
                 }
                 href="/add-ideas"
               >
-                <Plus /> Add Ideas
+                Add Ideas
               </Link>
             </li>
             <li>
@@ -87,7 +78,7 @@ export default function Navbar() {
                 }
                 href="/my-ideas"
               >
-                <User /> My Ideas
+                My Ideas
               </Link>
             </li>
             <li>
@@ -99,12 +90,15 @@ export default function Navbar() {
                 }
                 href="/my-interactions"
               >
-                <MessageCircle /> My Interactions
+                My Interactions
               </Link>
             </li>
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost text-3xl font-bold text-base-content">
+        <Link
+          href="/"
+          className="btn btn-ghost text-3xl font-bold text-base-content"
+        >
           <span className="text-lime-500">Idea</span> Vault
         </Link>
       </div>
@@ -115,7 +109,7 @@ export default function Navbar() {
               className={pathname === "/" ? "bg-lime-500 text-white" : ""}
               href="/"
             >
-              <House /> Home
+              Home
             </Link>
           </li>
           <li>
@@ -123,7 +117,7 @@ export default function Navbar() {
               className={pathname === "/ideas" ? "bg-lime-500 text-white" : ""}
               href="/ideas"
             >
-              <Lightbulb /> Ideas
+              Ideas
             </Link>
           </li>
           <li>
@@ -133,7 +127,7 @@ export default function Navbar() {
               }
               href="/add-ideas"
             >
-              <Plus /> Add Ideas
+              Add Ideas
             </Link>
           </li>
           <li>
@@ -143,7 +137,7 @@ export default function Navbar() {
               }
               href="/my-ideas"
             >
-              <User /> My Ideas
+              My Ideas
             </Link>
           </li>
           <li>
@@ -153,7 +147,7 @@ export default function Navbar() {
               }
               href="/my-interactions"
             >
-              <MessageCircle /> My Interactions
+              My Interactions
             </Link>
           </li>
         </ul>
