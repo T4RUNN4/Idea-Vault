@@ -74,7 +74,7 @@ export default function Carousel() {
                     {slide.title}
                   </h1>
 
-                  <p className="mt-6 text-base md:text-lg text-white/80 leading-relaxed">
+                  <p className="mt-2 text-base md:text-lg text-white/80 leading-relaxed">
                     {slide.description}
                   </p>
 
