@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import { redirect, useSearchParams  } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 
 export default function Login() {
   const {
@@ -23,12 +23,12 @@ export default function Login() {
       password: password,
     });
 
-    if(res) {
+    if (res) {
       toast.success("Login successful!");
       redirect(redirectUrl);
       reset();
     }
-    if(error) {
+    if (error) {
       toast.error(`Login failed: ${error.message}`);
     }
   };
@@ -69,12 +69,13 @@ export default function Login() {
               <div className="flex items-center justify-between">
                 <label className="label font-medium">Password</label>
 
-                <a
-                  href="/forgot-password"
+                <button
+                  type="button"
+                  onClick={() => toast.info("Password reset link sent!")}
                   className="text-sm text-lime-500 hover:underline"
                 >
                   Forgot Password?
-                </a>
+                </button>
               </div>
 
               <input
