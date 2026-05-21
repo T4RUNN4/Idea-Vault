@@ -4,21 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { toast } from "react-toastify";
+import DeleteModal from "./DeleteModal";
 import { useRouter } from "next/navigation";
 
 export default function IdeaCard({ idea }) {
   const pathname = usePathname();
   const router = useRouter();
-
-  const handleDelete = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${idea._id}`, {
-      method: "DELETE",
-    });
-    toast.success("Idea deleted successfully!");
-    my_modal_5.close();
-    router.refresh();
-  };
 
   return (
     <>
@@ -74,20 +65,7 @@ export default function IdeaCard({ idea }) {
         </div>
       </div>
 
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Are you sure?</h3>
-          <p className="py-4">
-            Your idea will be permanently deleted and cannot be recovered.
-          </p>
-          <form method="dialog" className="flex gap-2 justify-end">
-            <button type="button" onClick={handleDelete} className="btn btn-error">
-              Yes, I am sure!
-            </button>
-            <button className="btn btn-ghost">No, keep it</button>
-          </form>
-        </div>
-      </dialog>
+      <DeleteModal ideaId={idea._id} onDelete={() => router.refresh()} />
     </>
   );
 }
