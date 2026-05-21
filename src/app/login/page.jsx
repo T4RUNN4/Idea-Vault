@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams  } from "next/navigation";
 
 export default function Login() {
   const {
@@ -11,6 +11,9 @@ export default function Login() {
     formState: { errors },
     reset,
   } = useForm();
+
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect") || "/";
 
   const onSubmit = async (data) => {
     const { email, password } = data;
@@ -22,7 +25,7 @@ export default function Login() {
 
     if(res) {
       toast.success("Login successful!");
-      redirect("/");
+      redirect(redirectUrl);
       reset();
     }
     if(error) {
