@@ -1,14 +1,34 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 export default function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+
+    const { data: res, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+    });
+
+    if(res) {
+      toast.success("Login successful!");
+      redirect("/");
+      reset();
+    }
+    if(error) {
+      toast.error(`Login failed: ${error.message}`);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 md:px-10 lg:px-20">
