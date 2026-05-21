@@ -1,5 +1,17 @@
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${id}`);
+  const idea = await res.json();
+
+  return {
+    title: `${idea.title} - Idea Vault`,
+    description: idea.shortDescription,
+  };
+}
+
 export default async function DetailedIdea({ params }) {
   const { id } = await params;
 
