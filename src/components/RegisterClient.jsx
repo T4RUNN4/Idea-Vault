@@ -26,12 +26,12 @@ export default function RegisterClient() {
       image: photoUrl,
     });
 
-    if(res) {
+    if (res) {
       toast.success("Registration successful!");
       redirect(redirectUrl);
       reset();
     }
-    if(error) {
+    if (error) {
       toast.error(`Registration failed: ${error.message}`);
     }
   };
@@ -103,10 +103,19 @@ export default function RegisterClient() {
                 type="password"
                 className="input w-full"
                 placeholder="Create a strong password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: "Password is required",
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
+                    message:
+                      "Password must be at least 6 characters and include uppercase & lowercase letters",
+                  },
+                })}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm">Password is required</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
