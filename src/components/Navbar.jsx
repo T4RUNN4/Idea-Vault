@@ -1,3 +1,4 @@
+"use client";
 import {
   House,
   Lightbulb,
@@ -5,10 +6,24 @@ import {
   User,
   MessageCircle,
   LogIn,
+  LogOut,
   UserPlus,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import Loading from "./Loading";
+import Image from "next/image";
+import Link from "next/link";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+
+  const handleLogout = async () => {
+    toast.success("Logged out successfully!");
+    await authClient.signOut();
+  }
+
   return (
     <div className="navbar bg-base-100 shadow-sm px-20 py-4">
       <div className="navbar-start">
@@ -35,75 +50,106 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a href="/">
+              <Link href="/">
                 <House /> Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/ideas">
+              <Link href="/ideas">
                 <Lightbulb /> Ideas
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/add-ideas">
+              <Link href="/Linkdd-ideas">
                 <Plus /> Add Ideas
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/my-ideas">
+              <Link href="/my-ideas">
                 <User /> My Ideas
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/my-interactions">
+              <Link href="/my-interactions">
                 <MessageCircle /> My Interactions
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost text-3xl font-bold text-black">
+        <Link href="/" className="btn btn-ghost text-3xl font-bold text-black">
           <span className="text-lime-500">Idea</span> Vault
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a href="/">
+            <Link href="/">
               <House /> Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/ideas">
+            <Link href="/ideas">
               <Lightbulb /> Ideas
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/add-ideas">
+            <Link href="/Linkdd-ideas">
               <Plus /> Add Ideas
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/my-ideas">
+            <Link href="/my-ideas">
               <User /> My Ideas
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/my-interactions">
+            <Link href="/my-interactions">
               <MessageCircle /> My Interactions
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
-      <div className="flex gap-4 navbar-end">
-        <a href="/login" className="btn">
-          <LogIn /> Login
-        </a>
-        <a
-          href="/register"
-          className="btn btn-primary bg-lime-500 border-lime-500 text-white"
-        >
-          <UserPlus /> Register
-        </a>
+      <div className="flex gap-2 navbar-end">
+        {isPending ? (
+          <Loading />
+        ) : user ? (
+          <>
+            <div className="flex items-center gap-2">
+              <Image
+                src={user.image}
+                alt={user.name}
+                height={50}
+                width={50}
+                className="rounded-full"
+              />
+              <details className="dropdown">
+                <summary className="btn m-1">{user.name}</summary>
+                <ul className="menu dropdown-content bg-base-100 rounded-box z-1 p-2 shadow-sm">
+                  <li>
+                    <Link href="/profile">Profile</Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="text-red-500">
+                      <LogOut /> Logout
+                    </button>
+                  </li>
+                </ul>
+              </details>
+            </div>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="btn">
+              <LogIn /> Login
+            </Link>
+            <Link
+              href="/register"
+              className="btn btn-primary bg-lime-500 border-lime-500 text-white"
+            >
+              <UserPlus /> Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
