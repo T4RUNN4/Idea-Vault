@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 
 export default function Register() {
   const {
@@ -11,6 +11,9 @@ export default function Register() {
     formState: { errors },
     reset,
   } = useForm();
+
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect") || "/";
 
   const onSubmit = async (data) => {
     const { fullName, email, photoUrl, password } = data;
@@ -24,7 +27,7 @@ export default function Register() {
 
     if(res) {
       toast.success("Registration successful!");
-      redirect("/");
+      redirect(redirectUrl);
       reset();
     }
     if(error) {
@@ -123,7 +126,7 @@ export default function Register() {
           <p className="text-sm text-center text-gray-500 mt-6">
             Already have an account?{" "}
             <a
-              href="/login"
+              href={`/login?redirect=${encodeURIComponent(redirectUrl)}`}
               className="text-lime-500 font-medium hover:underline"
             >
               Login

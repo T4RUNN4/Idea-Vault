@@ -107,7 +107,7 @@ export default function Login() {
           <p className="text-sm text-center text-gray-500 mt-6">
             Don&apos;t have an account?{" "}
             <a
-              href="/register"
+              href={`/register?redirect=${encodeURIComponent(redirectUrl)}`}
               className="text-lime-500 font-medium hover:underline"
             >
               Register
