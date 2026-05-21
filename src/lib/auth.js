@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
 const client = new MongoClient(process.env.MONGO_URI);
-const db = client.db();
+const db = client.db("idea-vault");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
@@ -13,7 +13,4 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  trustedOrigins: [
-    process.env.BETTER_AUTH_URL,
-  ],
 });
