@@ -22,11 +22,22 @@ export default async function Ideas() {
           </p>
         </div>
 
-        <div className="p-6 grid grid-cols-3 gap-4">
-          {ideas.map((idea) => (
-            <IdeaCard key={idea._id} idea={idea} />
-          ))}
-        </div>
+        {ideas.length > 0 ? (
+          <div className="p-6 grid grid-cols-3 gap-4">
+            {ideas.map((idea) => (
+              <IdeaCard key={idea._id} idea={idea} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center mt-20">
+            <h2 className="text-2xl md:text-3xl font-semibold text-base-content">
+              No ideas submitted yet.
+            </h2>
+            <p className="mt-4 text-base md:text-lg text-base-content/70">
+              Be the first to share your innovative idea with the world!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
