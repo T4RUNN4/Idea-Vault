@@ -27,6 +27,9 @@ export default function Register() {
       redirect("/");
       reset();
     }
+    if(error) {
+      toast.error(`Registration failed: ${error.message}`);
+    }
   };
 
   return (
