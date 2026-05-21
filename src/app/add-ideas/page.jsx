@@ -1,8 +1,36 @@
 "use client";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export default function AddIdeas() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const formattedData = {
+      ...data,
+      estimatedBudget: Number(data.estimatedBudget) || 0,
+      tags: data.tags.split(",").map((tag) => tag.trim()) || [],
+      user: "Anonymous",
+      createdAt: new Date().toISOString(),
+      isTrending: false,
+    };
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formattedData),
+    });
+
+    const ret = await res.json();
+    toast.success("Idea submitted successfully!");
+    reset();
   };
 
   return (
@@ -20,7 +48,7 @@ export default function AddIdeas() {
         </div>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-base-200 border border-base-300 rounded-3xl shadow-sm p-6 md:p-10"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-base-300">
@@ -59,7 +87,11 @@ export default function AddIdeas() {
                   type="text"
                   className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="Idea Vault — A platform to discover startup ideas"
+                  {...register("title", { required: true })}
                 />
+                {errors.title && (
+                  <p className="text-red-500 text-sm">Title is required</p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
@@ -72,7 +104,13 @@ export default function AddIdeas() {
                 <textarea
                   className="textarea textarea-bordered min-h-24 w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="A short and catchy overview of your startup idea..."
+                  {...register("shortDescription", { required: true })}
                 ></textarea>
+                {errors.shortDescription && (
+                  <p className="text-red-500 text-sm">
+                    Short description is required
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
@@ -83,7 +121,13 @@ export default function AddIdeas() {
                 <textarea
                   className="textarea textarea-bordered min-h-44 w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="Explain how your idea works, who it helps, and why it matters..."
+                  {...register("detailedDescription", { required: true })}
                 ></textarea>
+                {errors.detailedDescription && (
+                  <p className="text-red-500 text-sm">
+                    Detailed description is required
+                  </p>
+                )}
               </div>
             </section>
 
@@ -104,7 +148,10 @@ export default function AddIdeas() {
                     Category <span className="text-red-500">*</span>
                   </label>
 
-                  <select className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400">
+                  <select
+                    className="select select-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
+                    {...register("category", { required: true })}
+                  >
                     <option disabled selected>
                       Select a category
                     </option>
@@ -124,6 +171,7 @@ export default function AddIdeas() {
                     type="text"
                     className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                     placeholder="AI, Startup, Productivity"
+                    {...register("tags")}
                   />
 
                   <p className="text-xs text-base-content/50">
@@ -153,7 +201,11 @@ export default function AddIdeas() {
                   type="text"
                   className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="https://example.com/startup-image.png"
+                  {...register("imageUrl", { required: true })}
                 />
+                {errors.imageUrl && (
+                  <p className="text-red-500 text-sm">Image URL is required</p>
+                )}
               </div>
             </section>
 
@@ -171,13 +223,14 @@ export default function AddIdeas() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-2">
                   <label className="font-medium text-sm">
-                    Estimated Budget <span className="text-red-500">*</span>
+                    Estimated Budget
                   </label>
 
                   <input
                     type="number"
                     className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                     placeholder="5000"
+                    {...register("estimatedBudget")}
                   />
                 </div>
 
@@ -190,7 +243,13 @@ export default function AddIdeas() {
                     type="text"
                     className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                     placeholder="Students, freelancers, startups..."
+                    {...register("targetAudience", { required: true })}
                   />
+                  {errors.targetAudience && (
+                    <p className="text-red-500 text-sm">
+                      Target audience is required
+                    </p>
+                  )}
                 </div>
               </div>
             </section>
@@ -214,7 +273,13 @@ export default function AddIdeas() {
                 <textarea
                   className="textarea textarea-bordered min-h-28 w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="What specific problem does your idea solve?"
+                  {...register("problemStatement", { required: true })}
                 ></textarea>
+                {errors.problemStatement && (
+                  <p className="text-red-500 text-sm">
+                    Problem statement is required
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
@@ -225,7 +290,13 @@ export default function AddIdeas() {
                 <textarea
                   className="textarea textarea-bordered min-h-32 w-full focus:outline-none focus:ring-2 focus:ring-lime-400"
                   placeholder="Describe how your solution works and why it's effective..."
+                  {...register("proposedSolution", { required: true })}
                 ></textarea>
+                {errors.proposedSolution && (
+                  <p className="text-red-500 text-sm">
+                    Proposed solution is required
+                  </p>
+                )}
               </div>
             </section>
           </div>
