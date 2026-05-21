@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { redirect, useSearchParams } from "next/navigation";
+import GoogleSignIn from "./GoogleSignIn";
 
 export default function RegisterClient() {
   const {
@@ -118,11 +119,7 @@ export default function RegisterClient() {
           </form>
 
           <div className="divider text-sm text-gray-400">OR</div>
-
-          <button className="btn btn-outline w-full">
-            Continue with Google
-          </button>
-
+          <GoogleSignIn pathname={redirectUrl} />
           <p className="text-sm text-center text-gray-500 mt-6">
             Already have an account?{" "}
             <a
