@@ -26,8 +26,8 @@ export default async function DetailedIdea({ params }) {
             src={idea.imageUrl}
             alt={idea.title}
             width={1200}
-            height={600}
-            className="w-full h-55 md:h-75 object-cover"
+            height={800}
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -62,7 +62,7 @@ export default async function DetailedIdea({ params }) {
           <div className="p-4 rounded-2xl">
             <p className="text-xs text-base-content/50">Budget</p>
             <p className="font-medium text-base-content mt-1">
-              {idea.estimatedBudget}
+              ${Number(idea.estimatedBudget).toLocaleString()}
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export default async function DetailedIdea({ params }) {
           </div>
         </div>
 
-        <div className="mt-10 py-6 md:py-8 rounded-3xl">
+        <div className="mt-6 py-6 rounded-3xl">
           <h2 className="text-xl font-semibold text-base-content mb-4">
             About This Idea
           </h2>
@@ -84,23 +84,21 @@ export default async function DetailedIdea({ params }) {
           </p>
         </div>
 
-        <div className="mt-8 py-6 md:py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="rounded-3xl">
-            <h2 className="text-xl font-semibold text-base-content mb-4">
-              Problem
-            </h2>
+        <div className="mt-4 py-6 md:py-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-red-500 py-4 px-6 rounded-3xl text-white">
+            <h2 className="text-xl font-semibold mb-4">Problem</h2>
 
-            <p className="text-sm text-base-content/70 leading-relaxed">
+            <p className="text-sm leading-relaxed">
               {idea.problemStatement}
             </p>
           </div>
 
-          <div className="rounded-3xl">
-            <h2 className="text-xl font-semibold text-base-content mb-4">
+          <div className="bg-green-500 py-4 px-6 rounded-3xl text-white">
+            <h2 className="text-xl font-semibold mb-4">
               Solution
             </h2>
 
-            <p className="text-sm text-base-content/70 leading-relaxed">
+            <p className="text-sm leading-relaxed">
               {idea.proposedSolution}
             </p>
           </div>
