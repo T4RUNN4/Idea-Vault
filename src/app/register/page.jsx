@@ -1,12 +1,15 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 export default function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -17,10 +20,13 @@ export default function Register() {
       email: email,
       password: password,
       image: photoUrl,
-      callbackURL: "/",
     });
 
-    console.log(res, error);
+    if(res) {
+      toast.success("Registration successful!");
+      redirect("/");
+      reset();
+    }
   };
 
   return (
