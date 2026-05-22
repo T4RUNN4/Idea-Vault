@@ -1,10 +1,17 @@
+import RegisterClient from "@/components/RegisterClient";
+import { Suspense } from "react";
+
 export const metadata = {
   title: "Register - Idea Vault",
   description: "Register page of Idea Vault!",
 };
 
-import RegisterClient from "@/components/RegisterClient";
-
 export default function Page() {
-  return <RegisterClient />;
+  return (
+    <Suspense
+      fallback={<span className="loading loading-spinner loading-lg"></span>}
+    >
+      <RegisterClient />
+    </Suspense>
+  );
 }
