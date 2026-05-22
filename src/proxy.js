@@ -14,7 +14,7 @@ export async function proxy(request) {
     (pathName.startsWith("/add-ideas") ||
       pathName.startsWith("/my-ideas") ||
       pathName.startsWith("/my-interactions") ||
-      pathName.startsWith("/ideas"))
+      pathName.startsWith("/ideas/:id"))
   ) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", request.nextUrl.pathname);
@@ -33,6 +33,6 @@ export const config = {
     "/my-interactions",
     "/login",
     "/register",
-    "/ideas/:path*",
+    "/ideas/:id",
   ],
 };
