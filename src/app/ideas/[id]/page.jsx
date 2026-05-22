@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AddCommentModal from "@components/AddCommentModal";
+import AddCommentModal from "@/components/AddCommentModal";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
