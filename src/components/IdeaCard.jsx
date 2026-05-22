@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import DeleteModal from "./DeleteModal";
+import UpdateModal from "./UpdateModal";
 import { useRouter } from "next/navigation";
 
 export default function IdeaCard({ idea }) {
@@ -57,7 +58,12 @@ export default function IdeaCard({ idea }) {
               View details →
             </Link>
             {pathname === "/my-ideas" && (
-              <button className="btn btn-ghost rounded-md text-white font-medium text-sm ">
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_6").showModal()
+                }
+                className="btn btn-ghost rounded-md text-white font-medium text-sm "
+              >
                 Update
               </button>
             )}
@@ -66,6 +72,7 @@ export default function IdeaCard({ idea }) {
       </div>
 
       <DeleteModal ideaId={idea._id} onDelete={() => router.refresh()} />
+      <UpdateModal idea={idea} />
     </>
   );
 }
