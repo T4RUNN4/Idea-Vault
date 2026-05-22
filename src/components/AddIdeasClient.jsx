@@ -22,6 +22,7 @@ export default function AddIdeasClient() {
       user: user ? user.email : "Anonymous",
       createdAt: new Date().toISOString(),
       isTrending: false,
+      comments: [],
     };
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas`, {
