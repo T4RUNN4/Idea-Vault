@@ -1,7 +1,6 @@
 "use client";
 import { UserPlus, LogIn, LogOut } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import Loading from "./Loading";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
@@ -155,7 +154,7 @@ export default function Navbar() {
       <div className="flex gap-2 navbar-end">
         <ThemeToggle />
         {isPending ? (
-          <Loading />
+          <span className="loading loading-spinner loading-lg"></span>
         ) : user ? (
           <>
             <div className="flex items-center gap-2">
