@@ -105,7 +105,7 @@ export default async function DetailedIdea({ params }) {
         <h1 className="mt-6 mb-2 text-lg font-medium">Comments ({idea.comments.length})</h1>
         <div className="flex flex-col gap-4">
           {idea.comments.length === 0 ? (
-            <p className="text-base-content text-md">No comments yet!</p>
+            <p className="text-base-content text-sm">No comments yet!</p>
           ) : (
             idea.comments.map((comment, index) => (
               <div
