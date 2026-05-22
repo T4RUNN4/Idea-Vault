@@ -48,6 +48,7 @@ export default function UpdateModal({ idea, onUpdate }) {
 
           <button
             onClick={() => document.getElementById("my_modal_6").close()}
+            type="button"
             className="btn btn-ghost btn-sm rounded-md text-gray-500 hover:text-gray-300 transition"
           >
             ✕
