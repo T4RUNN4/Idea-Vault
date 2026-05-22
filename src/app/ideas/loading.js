@@ -1,5 +1,7 @@
-import LoadingComponent from '@/components/LoadingComponent'
-
 export default function Loading() {
-  return <LoadingComponent />
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  );
 }
