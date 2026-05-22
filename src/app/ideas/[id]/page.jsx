@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AddCommentModal from "@components/AddCommentModal";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -98,20 +99,22 @@ export default async function DetailedIdea({ params }) {
           </div>
         </div>
 
-        <button className="btn bg-lime-500 hover:bg-lime-600">
+        <button
+          onClick={() => document.getElementById("my_modal_7").showModal()}
+          className="btn bg-lime-500 hover:bg-lime-600"
+        >
           Add a comment
         </button>
 
-        <h1 className="mt-6 mb-2 text-lg font-medium">Comments ({idea.comments.length})</h1>
+        <h1 className="mt-6 mb-2 text-lg font-medium">
+          Comments ({idea.comments.length})
+        </h1>
         <div className="flex flex-col gap-4">
           {idea.comments.length === 0 ? (
             <p className="text-base-content text-sm">No comments yet!</p>
           ) : (
             idea.comments.map((comment, index) => (
-              <div
-                key={index}
-                className="border p-3 rounded"
-              >
+              <div key={index} className="border p-3 rounded">
                 <h2 className="font-semibold">{comment.name}</h2>
                 <p className="text-sm opacity-70">
                   {new Date(comment.createdAt).toLocaleString()}
@@ -122,6 +125,7 @@ export default async function DetailedIdea({ params }) {
           )}
         </div>
       </div>
+      <AddCommentModal />
     </div>
   );
 }
