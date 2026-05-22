@@ -10,12 +10,17 @@ export default function UpdateModal({ idea, onUpdate }) {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const formattedData = {
+      ...data,
+      tags: data.tags.split(",").map((tag) => tag.trim()),
+    };
+
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${idea._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formattedData),
     });
 
     if (response.ok) {
