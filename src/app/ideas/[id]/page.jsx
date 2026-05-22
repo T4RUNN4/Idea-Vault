@@ -102,6 +102,7 @@ export default async function DetailedIdea({ params }) {
           Add a comment
         </button>
 
+        <h1 className="mt-4 mb-2 text-lg">Comments ({idea.comments.length})</h1>
         <div className="flex flex-col gap-4">
           {idea.comments.length === 0 ? (
             <p className="text-base-content text-md">No comments yet!</p>
