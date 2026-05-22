@@ -72,7 +72,7 @@ export default function IdeaCard({ idea }) {
       </div>
 
       <DeleteModal ideaId={idea._id} onDelete={() => router.refresh()} />
-      <UpdateModal idea={idea} />
+      <UpdateModal idea={idea} onUpdate={() => router.refresh()} />
     </>
   );
 }

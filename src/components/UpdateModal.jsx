@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
-export default function UpdateModal({ idea }) {
+export default function UpdateModal({ idea, onUpdate }) {
   const {
     register,
     handleSubmit,
@@ -8,8 +9,22 @@ export default function UpdateModal({ idea }) {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${idea._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      toast.success("Idea updated successfully!");
+      document.getElementById("my_modal_6").close();
+      onUpdate();
+    } else {
+      toast.error("Failed to update idea. Please try again.");
+    }
   };
 
   return (
