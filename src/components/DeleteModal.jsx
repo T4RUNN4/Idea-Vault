@@ -7,7 +7,7 @@ export default function DeleteModal({ ideaId, onDelete }) {
       method: "DELETE",
     });
     toast.success("Idea deleted successfully!");
-    my_modal_5.close();
+    document.getElementById("my_modal_5").close();
     onDelete();
   };
 
