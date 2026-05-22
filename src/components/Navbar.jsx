@@ -4,17 +4,19 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
 
   const handleLogout = async () => {
     toast.success("Logged out successfully!");
     await authClient.signOut();
+    router.refresh();
   };
 
   return (
