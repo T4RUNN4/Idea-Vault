@@ -88,20 +88,37 @@ export default async function DetailedIdea({ params }) {
           <div className="bg-red-500 py-4 px-6 rounded-md  text-white">
             <h2 className="text-xl font-semibold mb-4">Problem</h2>
 
-            <p className="text-sm leading-relaxed">
-              {idea.problemStatement}
-            </p>
+            <p className="text-sm leading-relaxed">{idea.problemStatement}</p>
           </div>
 
           <div className="bg-green-500 py-4 px-6 rounded-md text-white">
-            <h2 className="text-xl font-semibold mb-4">
-              Solution
-            </h2>
+            <h2 className="text-xl font-semibold mb-4">Solution</h2>
 
-            <p className="text-sm leading-relaxed">
-              {idea.proposedSolution}
-            </p>
+            <p className="text-sm leading-relaxed">{idea.proposedSolution}</p>
           </div>
+        </div>
+
+        <button className="btn bg-lime-500 hover:bg-lime-600">
+          Add a comment
+        </button>
+
+        <div className="flex flex-col gap-4">
+          {idea.comments.length === 0 ? (
+            <p className="text-base-content text-md">No comments yet!</p>
+          ) : (
+            idea.comments.map((comment, index) => (
+              <div
+                key={index}
+                className="border p-3 rounded"
+              >
+                <h2 className="font-semibold">{comment.name}</h2>
+                <p className="text-sm opacity-70">
+                  {new Date(comment.createdAt).toLocaleString()}
+                </p>
+                <p>{comment.comment}</p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
