@@ -5,14 +5,12 @@ import { useEffect, useState } from "react";
 export default function ThemeToggle() {
   const [theme, setTheme] = useState("light");
 
-  // Load saved theme once
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
-  // Apply + save theme whenever it changes
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);

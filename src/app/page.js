@@ -27,15 +27,15 @@ export default async function Home() {
           Discover what’s gaining attention in the startup community
         </p>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ideas.map((idea) => (
-            <IdeaCard key={idea.id} idea={idea} />
+            <IdeaCard key={idea._id} idea={idea} />
           ))}
         </div>
       </section>
 
       <section className="mt-20 bg-base-200 border-y border-base-300">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-20 py-16 grid md:grid-cols-2 gap-10 items-center">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 lg:px-20 py-16 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl font-bold text-base-content">
               Validate Your Startup Ideas Faster
@@ -67,7 +67,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 md:px-8 lg:px-20 mt-20 mb-24">
+      <section className="max-w-6xl mx-auto px-6 md:px-8 lg:px-20 mt-20 mb-24">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="order-2 md:order-1 rounded-3xl overflow-hidden border border-base-300 shadow-sm">
             <Image

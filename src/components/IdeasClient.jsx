@@ -53,7 +53,7 @@ export default function IdeasClient({ ideas }) {
             <summary className="btn bg-lime-500 hover:bg-lime-600 text-white m-1">
               Filter
             </summary>
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-30 lg:w-52 p-2 shadow-sm">
               <li>
                 <button className={filter === "All" ? "bg-lime-500 text-white" : ""} onClick={() => handleFilter("All")}>
                   All
@@ -89,7 +89,7 @@ export default function IdeasClient({ ideas }) {
         </div>
 
         {filteredIdeas.length > 0 ? (
-          <div className="p-6 grid grid-cols-3 gap-4">
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredIdeas.map((idea) => (
               <IdeaCard key={idea._id} idea={idea} />
             ))}

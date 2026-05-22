@@ -19,9 +19,9 @@ export default async function DetailedIdea({ params }) {
   const idea = await res.json();
 
   return (
-    <div className="min-h-screen bg-base-100 px-4 py-12 md:px-8 lg:px-20">
+    <div className="min-h-screen bg-base-100 px-6 py-12 md:px-8 lg:px-20">
       <div className="mx-auto w-full max-w-5xl">
-        <div className="rounded-3xl overflow-hidden border border-base-300 shadow-sm">
+        <div className="rounded-md  overflow-hidden border border-base-300 shadow-sm">
           <Image
             src={idea.imageUrl}
             alt={idea.title}
@@ -51,7 +51,7 @@ export default async function DetailedIdea({ params }) {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-3 gap-4">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-4 rounded-2xl">
             <p className="text-xs text-base-content/50">Category</p>
             <p className="font-medium text-base-content mt-1">
@@ -85,7 +85,7 @@ export default async function DetailedIdea({ params }) {
         </div>
 
         <div className="mt-4 py-6 md:py-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-red-500 py-4 px-6 rounded-3xl text-white">
+          <div className="bg-red-500 py-4 px-6 rounded-md  text-white">
             <h2 className="text-xl font-semibold mb-4">Problem</h2>
 
             <p className="text-sm leading-relaxed">
@@ -93,7 +93,7 @@ export default async function DetailedIdea({ params }) {
             </p>
           </div>
 
-          <div className="bg-green-500 py-4 px-6 rounded-3xl text-white">
+          <div className="bg-green-500 py-4 px-6 rounded-md text-white">
             <h2 className="text-xl font-semibold mb-4">
               Solution
             </h2>

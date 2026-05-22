@@ -6,6 +6,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-20 py-4">
+    <div className="navbar bg-base-100 shadow-sm px-8 md:px-20 py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -94,6 +95,46 @@ export default function Navbar() {
                 My Interactions
               </Link>
             </li>
+            {isPending ? (
+              <span className="loading loading-spinner loading-lg"></span>
+            ) : user ? (
+              <li className="flex flex-row mt-2 md:hidden">
+                <Image
+                  src={user.image}
+                  alt={user.name}
+                  height={70}
+                  width={70}
+                  className="rounded-full"
+                />
+                <div className="flex flex-col">
+                  <Link href="/profile" className="btn btn-ghost">
+                    {user.name}
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="flex gap-1 text-red-500"
+                  >
+                    <LogOut /> Logout
+                  </button>
+                </div>
+              </li>
+            ) : (
+              <>
+                <li className="md:hidden mt-2">
+                  <Link href="/login" className="btn">
+                    <LogIn /> Login
+                  </Link>
+                </li>
+                <li className="md:hidden mt-1">
+                  <Link
+                    href="/register"
+                    className="btn btn-primary bg-lime-500 border-lime-500 text-white"
+                  >
+                    <UserPlus /> Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Link
@@ -156,34 +197,32 @@ export default function Navbar() {
       <div className="flex gap-2 navbar-end">
         <ThemeToggle />
         {isPending ? (
-          <span className="loading loading-spinner loading-lg"></span>
+          <span className="hidden lg:block loading loading-spinner loading-lg"></span>
         ) : user ? (
-          <>
-            <div className="flex items-center gap-2">
-              <Image
-                src={user.image}
-                alt={user.name}
-                height={50}
-                width={50}
-                className="rounded-full"
-              />
-              <details className="dropdown">
-                <summary className="btn m-1">{user.name}</summary>
-                <ul className="menu dropdown-content bg-base-100 rounded-box z-1 p-2 shadow-sm">
-                  <li>
-                    <Link href="/profile">Profile</Link>
-                  </li>
-                  <li>
-                    <button onClick={handleLogout} className="text-red-500">
-                      <LogOut /> Logout
-                    </button>
-                  </li>
-                </ul>
-              </details>
-            </div>
-          </>
+          <div className="hidden md:flex items-center gap-2">
+            <Image
+              src={user.image}
+              alt={user.name}
+              height={50}
+              width={50}
+              className="rounded-full"
+            />
+            <details className="dropdown">
+              <summary className="btn m-1">{user.name}</summary>
+              <ul className="menu dropdown-content bg-base-100 rounded-box z-1 p-2 shadow-sm">
+                <li>
+                  <Link href="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="text-red-500">
+                    <LogOut /> Logout
+                  </button>
+                </li>
+              </ul>
+            </details>
+          </div>
         ) : (
-          <>
+          <div className="hidden md:flex gap-2">
             <Link href="/login" className="btn">
               <LogIn /> Login
             </Link>
@@ -193,7 +232,7 @@ export default function Navbar() {
             >
               <UserPlus /> Register
             </Link>
-          </>
+          </div>
         )}
       </div>
     </div>

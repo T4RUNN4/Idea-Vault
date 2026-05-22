@@ -41,10 +41,10 @@ export default function UpdateModal({ idea, onUpdate }) {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-base-300">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-lime-500">
+              <h2 className="text-lg md:text-2xl font-bold text-lime-500">
                 Edit Your Idea
               </h2>
-              <p className="text-sm text-base-content/60 mt-1">
+              <p className="text-xs md:text-sm text-base-content/60 mt-1">
                 Fields marked with{" "}
                 <span className="text-red-500 font-bold">*</span> are required
               </p>

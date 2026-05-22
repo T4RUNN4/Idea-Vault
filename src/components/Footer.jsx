@@ -64,7 +64,7 @@ export default function Footer() {
       </aside>
       <div>
         <h6 className="footer-title">Our website</h6>
-        <nav className="grid grid-cols-3 gap-4">
+        <nav className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           <Link href="/" className="flex gap-2 link link-hover">
             <House /> Home
           </Link>
